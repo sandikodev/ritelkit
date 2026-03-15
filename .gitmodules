@@ -1,0 +1,6 @@
+[submodule "ritelkit"]
+	path = ritelkit
+	url = git@github.com:sandikodev/ritelkit.git
+[submodule "ritelkit-app"]
+	path = ritelkit-app
+	url = git@github.com:konxc/ritelkit-app.git
