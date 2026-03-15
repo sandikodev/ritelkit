@@ -9,14 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #030303;
-            --card-bg: rgba(255, 255, 255, 0.02);
-            --card-border: rgba(255, 255, 255, 0.06);
+            --bg-dark: #020202;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
             --accent-primary: #10b981;
             --accent-secondary: #3b82f6;
-            --text-main: #f8fafc;
+            --text-main: #f1f5f9;
             --text-dim: #94a3b8;
-            --glass-blur: 16px;
+            --glass-blur: 24px;
         }
 
         * {
@@ -43,15 +43,14 @@
             width: 100vw;
             height: 100vh;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-            mask-image: radial-gradient(circle at 50% 50%, black, transparent 80%);
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at 50% 50%, black, transparent 90%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* Animating Glow Orbs */
         .bg-glows {
             position: fixed;
             top: 0;
@@ -60,172 +59,221 @@
             height: 100%;
             z-index: -2;
             overflow: hidden;
-            filter: blur(80px);
+            filter: blur(100px);
             pointer-events: none;
         }
 
         .glow-orb {
             position: absolute;
             border-radius: 50%;
-            opacity: 0.12;
+            opacity: 0.15;
             animation: moveOrb 25s infinite alternate ease-in-out;
         }
 
         .glow-1 {
-            width: 800px;
-            height: 800px;
+            width: 800px; height: 800px;
             background: radial-gradient(circle, var(--accent-primary), transparent 70%);
-            top: -200px;
-            left: -200px;
+            top: -200px; left: -200px;
             animation-duration: 30s;
         }
 
         .glow-2 {
-            width: 700px;
-            height: 700px;
+            width: 700px; height: 700px;
             background: radial-gradient(circle, var(--accent-secondary), transparent 70%);
-            bottom: -150px;
-            right: -150px;
+            bottom: -150px; right: -150px;
             animation-delay: -7s;
-            animation-duration: 35s;
         }
 
         .glow-3 {
-            width: 600px;
-            height: 600px;
+            width: 600px; height: 600px;
             background: radial-gradient(circle, #8b5cf6, transparent 70%);
-            top: 30%;
-            left: 50%;
+            top: 40%; left: 30%;
             animation-delay: -15s;
-            animation-duration: 40s;
         }
 
         @keyframes moveOrb {
             0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-            50% { transform: translate(100px, 50px) scale(1.1) rotate(90deg); }
-            100% { transform: translate(-50px, 100px) scale(0.9) rotate(180deg); }
+            100% { transform: translate(100px, 100px) scale(1.2) rotate(180deg); }
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
             position: relative;
             z-index: 1;
         }
 
         header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 6rem;
             animation: fadeInDown 1s ease-out;
         }
 
         .badge {
             display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
             color: var(--accent-primary);
-            border-radius: 99px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
             margin-bottom: 2rem;
-            letter-spacing: 1px;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
         }
 
         h1 {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff 0%, #a5f3fc 100%);
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            letter-spacing: -0.03em;
+            background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.7) 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
-            line-height: 1.1;
+            line-height: 1;
         }
 
         .subtitle {
             font-size: 1.25rem;
             color: var(--text-dim);
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
             line-height: 1.6;
+            font-weight: 400;
         }
 
+        /* Modern Onboarding Steps */
+        .onboarding-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 4rem 0 8rem;
+        }
+
+        .step-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid var(--card-border);
+            padding: 3rem;
+            border-radius: 32px;
+            backdrop-filter: blur(var(--glass-blur));
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            border-color: rgba(255,255,255,0.2);
+            background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+            transform: translateY(-5px);
+        }
+
+        .step-num {
+            font-size: 3rem;
+            font-weight: 900;
+            font-family: 'Outfit', sans-serif;
+            opacity: 0.1;
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+            background: linear-gradient(to bottom, #fff, transparent);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .step-card h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .step-card p {
+            color: var(--text-dim);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .code-snippet {
+            background: #000;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Upgraded Section Cards */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin-top: 4rem;
+            margin-bottom: 6rem;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            padding: 2.5rem;
-            border-radius: 24px;
+            padding: 3.5rem;
+            border-radius: 40px;
             backdrop-filter: blur(var(--glass-blur));
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(16, 185, 129, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
-            opacity: 0.5;
+            border-color: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.04);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            transform: translateY(-10px);
         }
 
         .card h2 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
             color: #fff;
+            letter-spacing: -0.02em;
         }
 
         .card p {
             color: var(--text-dim);
-            line-height: 1.6;
-            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
             flex-grow: 1;
         }
 
         .card-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.25rem;
         }
 
         .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
+            padding: 0.85rem 1.75rem;
+            border-radius: 14px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .btn-primary {
-            background: var(--accent-primary);
+            background: #fff;
             color: #000;
         }
 
         .btn-primary:hover {
-            background: #34d399;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            transform: scale(1.03);
+            box-shadow: 0 0 25px rgba(255,255,255,0.3);
         }
 
         .btn-outline {
@@ -238,69 +286,86 @@
             border-color: #fff;
         }
 
+        /* Toolchain Lists */
+        .spec-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .spec-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            color: var(--text-dim);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .spec-list li strong {
+            color: #fff;
+        }
+
         .docs-section {
-            margin-top: 6rem;
+            margin-top: 8rem;
             text-align: center;
-            border-top: 1px solid var(--card-border);
-            padding-top: 4rem;
+            padding-bottom: 10rem;
         }
 
         .docs-section h3 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            font-family: 'Outfit', sans-serif;
         }
 
         .docs-links {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .doc-item {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
             color: var(--text-dim);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: all 0.3s;
         }
 
         .doc-item:hover {
             color: var(--accent-secondary);
+            transform: translateY(-5px);
         }
 
-        .doc-item svg {
-            width: 20px;
-            height: 20px;
-        }
+        .doc-item svg { width: 32px; height: 32px; }
 
         footer {
-            margin-top: 8rem;
+            margin-top: 5rem;
             text-align: center;
-            padding-bottom: 4rem;
+            border-top: 1px solid var(--card-border);
+            padding: 4rem 0;
             color: #475569;
-            font-size: 0.9rem;
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .pulse {
-            width: 8px;
-            height: 8px;
+            width: 10px; height: 10px;
             background: var(--accent-primary);
             border-radius: 50%;
             display: inline-block;
-            margin-right: 8px;
-            box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
+            margin-right: 10px;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
             70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
             100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
@@ -312,104 +377,106 @@
         <div class="glow-orb glow-2"></div>
         <div class="glow-orb glow-3"></div>
     </div>
+    
     <div class="container">
         <header>
-            <div class="badge">SandiKodev R&D</div>
-            <h1>RitelKit Ecosystem</h1>
-            <p class="subtitle">Sebuah ekosistem manajemen ritel modern berbasis multi-tenancy, dirancang untuk kecepatan, keamanan data, dan skalabilitas maksimal.</p>
+            <div class="badge">SandiKodev Ecosystem</div>
+            <h1>RitelKit Dashboard</h1>
+            <p class="subtitle">Satu ekosistem terintegrasi untuk manajemen toko, stok global, dan billing antar tenant dengan standar keamanan data tingkat tinggi.</p>
         </header>
 
+        <!-- Development Onboarding (TOP) -->
+        <section>
+            <h3 style="text-align: center; font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 1rem;">Developer Onboarding</h3>
+            <p class="subtitle" style="margin-bottom: 4rem; text-align: center;">Mulai pengembangan dalam hitungan menit dengan toolchain standar kami.</p>
+            
+            <div class="onboarding-grid">
+                <div class="step-card">
+                    <span class="step-num">01</span>
+                    <h4>Akses & Clone</h4>
+                    <p>Dapatkan akses SSH tim, lalu lakukan clone rekursif untuk menyertakan seluruh submodules.</p>
+                    <div class="code-snippet">git clone --recursive [URL]</div>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">02</span>
+                    <h4>Config /etc/hosts</h4>
+                    <p>Petakan domain ritelkit ke local machine Anda untuk simulasi multi-tenant yang akurat.</p>
+                    <div class="code-snippet">127.0.0.1 ritelkit.local</div>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">03</span>
+                    <h4>Instant Runner</h4>
+                    <p>Gunakan script instan kami untuk menyalakan ekosistem Dashboard dan App sekaligus.</p>
+                    <div class="code-snippet">sudo ./dev.sh</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Infrastructure -->
         <section class="projects-grid">
-            <!-- RitelKit Dashboard -->
             <div class="card">
                 <h2>RitelKit Dashboard</h2>
-                <p>Pusat kendali untuk manajemen global tenant, penagihan (billing), audit log terpadu, dan manajemen stok lintas toko.</p>
+                <p>Mesin administrasi terpusat. Mengelola tenant, audit log global, penagihan, serta monitoring stok seluruh titik cabang secara real-time.</p>
                 <div class="card-links">
                     <a href="https://github.com/sandikodev/ritelkit" class="btn btn-primary">Repositori</a>
-                    <a href="https://ritelkit.local:4322" class="btn btn-outline" title="Local Dev Only">Dev Dashboard</a>
+                    <a href="#" class="btn btn-outline">Preview</a>
                 </div>
             </div>
 
-            <!-- RitelKit App -->
             <div class="card">
                 <h2>RitelKit Operation App</h2>
-                <p>Aplikasi operasional harian untuk setiap tenant. Mencakup Point of Sale (POS), Inventory & Fulfillment, hingga pelaporan keuangan real-time.</p>
+                <p>Aplikasi operasional setiap outlet. Fokus pada transaksi POS tercepat, manajemen inventaris lokal, dan sinkronisasi data instan ke pusat.</p>
                 <div class="card-links">
                     <a href="https://github.com/konxc/ritelkit-app" class="btn btn-primary">Repositori</a>
-                    <a href="https://kopi-toktok.ritelkit.local:4321" class="btn btn-outline" title="Local Dev Only">Dev App</a>
+                    <a href="#" class="btn btn-outline">Preview</a>
                 </div>
             </div>
         </section>
 
-        <section class="projects-grid" style="margin-top: 6rem;">
-            <!-- Toolchain -->
+        <!-- Specs & Toolchain -->
+        <section class="projects-grid">
             <div class="card">
-                <div class="badge" style="margin-bottom: 1rem; font-size: 0.7rem;">Toolchain</div>
-                <h2>Spesifikasi Perangkat</h2>
-                <p>Setiap engineer wajib menggunakan stack standar untuk menjamin konsistensi build dan environment.</p>
-                <ul style="list-style: none; color: var(--text-dim); line-height: 1.8; font-size: 0.95rem;">
-                    <li><span style="color: var(--accent-primary);">•</span> Node.js v20+ (LTS)</li>
-                    <li><span style="color: var(--accent-primary);">•</span> pnpm v9.x (Package Manager)</li>
-                    <li><span style="color: var(--accent-primary);">•</span> Turso CLI (LibSQL Manager)</li>
-                    <li><span style="color: var(--accent-primary);">•</span> Cloudflare Wrangler v3+</li>
-                    <li><span style="color: var(--accent-primary);">•</span> Git v2.40+</li>
+                <h2>System Stack</h2>
+                <p>Spesifikasi lingkungan minimal untuk memastikan kompatibilitas build antar engineer.</p>
+                <ul class="spec-list">
+                    <li><span>•</span> <strong>Node.js:</strong> v20.x (LTS)</li>
+                    <li><span>•</span> <strong>Package Manager:</strong> pnpm v9+</li>
+                    <li><span>•</span> <strong>Database:</strong> Turso (LibSQL)</li>
+                    <li><span>•</span> <strong>Edge:</strong> Cloudflare Wrangler</li>
                 </ul>
             </div>
 
-            <!-- Environment -->
             <div class="card">
-                <div class="badge" style="margin-bottom: 1rem; font-size: 0.7rem;">Environment</div>
-                <h2>Kebutuhan Sistem</h2>
-                <p>Spesifikasi minimum untuk menjalankan seluruh ekosistem (Dashboard + App + DB) secara lokal.</p>
-                <ul style="list-style: none; color: var(--text-dim); line-height: 1.8; font-size: 0.95rem;">
-                    <li><span style="color: var(--accent-secondary);">•</span> OS: Linux (Ubuntu/Pop!_OS) / macOS</li>
-                    <li><span style="color: var(--accent-secondary);">•</span> RAM: Minimal 8GB (Recommended 16GB)</li>
-                    <li><span style="color: var(--accent-secondary);">•</span> Local Domain Mappings (/etc/hosts)</li>
-                    <li><span style="color: var(--accent-secondary);">•</span> VS Code + Svelte/Astro Extensions</li>
+                <h2>Spec Mesin</h2>
+                <p>Rekomendasi perangkat untuk pengalaman pengembangan yang paling mulus dan responsif.</p>
+                <ul class="spec-list">
+                    <li><span>•</span> <strong>OS:</strong> Linux (Ubuntu/Pop!_OS) / macOS</li>
+                    <li><span>•</span> <strong>RAM:</strong> Minimal 8GB (Rec. 16GB)</li>
+                    <li><span>•</span> <strong>Editor:</strong> VS Code (Astro/Svelte Plugins)</li>
                 </ul>
             </div>
         </section>
 
         <section class="docs-section">
-            <h3>Development Onboarding</h3>
-            <p class="subtitle" style="margin-bottom: 3rem;">Langkah-langkah bagi kontributor internal untuk memulai pengembangan.</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; text-align: left;">
-                <div style="background: rgba(255,255,255,0.02); padding: 2rem; border-radius: 20px; border: 1px solid var(--card-border);">
-                    <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">1. Akses & Clone</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-dim);">Dapatkan akses SSH ke tim SandiKodev, lalu jalankan clone rekursif:<br><code style="background: #000; padding: 4px 8px; border-radius: 4px; display: block; margin-top: 10px;">git clone --recursive [URL_REPO]</code></p>
-                </div>
-                <div style="background: rgba(255,255,255,0.02); padding: 2rem; border-radius: 20px; border: 1px solid var(--card-border);">
-                    <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">2. Konfigurasi Host</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-dim);">Petakan domain lokal di mesin Anda:<br><code style="background: #000; padding: 4px 8px; border-radius: 4px; display: block; margin-top: 10px;">127.0.0.1 ritelkit.local</code></p>
-                </div>
-                <div style="background: rgba(255,255,255,0.02); padding: 2rem; border-radius: 20px; border: 1px solid var(--card-border);">
-                    <h4 style="color: var(--accent-primary); margin-bottom: 1rem;">3. Instant Runner</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-dim);">Gunakan script instan kami untuk menyalakan seluruh stack dev:<br><code style="background: #000; padding: 4px 8px; border-radius: 4px; display: block; margin-top: 10px;">./dev.sh</code></p>
-                </div>
-            </div>
-        </section>
-
-        <section class="docs-section">
-            <h3>Dokumentasi & Referensi</h3>
+            <h3>Resources & Reference</h3>
             <div class="docs-links">
                 <a href="https://github.com/sandikodev/ritelkit-dev/blob/main/ECOSYSTEM_GUIDE.md" class="doc-item">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    Ecosystem Orchestration
+                    <span>Ecosystem Guide</span>
                 </a>
                 <a href="https://github.com/sandikodev/ritelkit/blob/main/DEVELOPMENT_REF.md" class="doc-item">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                    Dashboard Dev Reference
+                    <span>Dashboard Ref</span>
                 </a>
                 <a href="https://github.com/konxc/ritelkit-app/blob/main/DEVELOPMENT_REF.md" class="doc-item">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                    Operation App Dev Reference
+                    <span>Operation App Ref</span>
                 </a>
             </div>
         </section>
 
         <footer>
-            <p><span class="pulse"></span> Sistem Aktif dalam Pengembangan Internal</p>
-            <p style="margin-top: 10px;">&copy; 2026 SandiKodev. Proprietary Orchestration Logic.</p>
+            <p><span class="pulse"></span> SandiKodev Orchestration Platform &copy; 2026</p>
         </footer>
     </div>
 </body>
