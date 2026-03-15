@@ -9,13 +9,13 @@ NC='\033[0m' # No Color
 echo -e "${BLUE}🚀 Memulai RitelKit Development Ecosystem dengan Portless...${NC}"
 
 # Cek apakah folder exist
-if [ ! -d "ritelkit" ] || [ ! -d "ritelkit-app" ]; then
-    echo "❌ Error: Folder ritelkit atau ritelkit-app tidak ditemukan."
+if [ ! -d "ritelkit-site" ] || [ ! -d "ritelkit-app" ]; then
+    echo "❌ Error: Folder ritelkit-site atau ritelkit-app tidak ditemukan."
     exit 1
 fi
 
 # Ensure dependencies are installed if node_modules missing
-if [ ! -d "node_modules" ] || [ ! -d "ritelkit/node_modules" ]; then
+if [ ! -d "node_modules" ] || [ ! -d "ritelkit-site/node_modules" ]; then
     echo -e "${BLUE}📦 Menyinkronkan dependensi workspace...${NC}"
     pnpm install
 fi
@@ -27,5 +27,5 @@ npx concurrently \
   --prefix "[{name}]" \
   --names "Dashboard,App" \
   --prefix-colors "green.bold,blue.bold" \
-  "npx portless --name ritelkit \"cd ritelkit && pnpm dev\"" \
+  "npx portless --name ritelkit \"cd ritelkit-site && pnpm dev\"" \
   "npx portless --name app \"cd ritelkit-app && pnpm dev\""

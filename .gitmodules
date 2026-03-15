@@ -1,5 +1,5 @@
 [submodule "ritelkit"]
-	path = ritelkit
+	path = ritelkit-site
 	url = git@github.com:sandikodev/ritelkit.git
 [submodule "ritelkit-app"]
 	path = ritelkit-app
