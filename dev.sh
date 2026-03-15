@@ -30,5 +30,5 @@ npx concurrently \
   --prefix "[{name}]" \
   --names "Site,App" \
   --prefix-colors "green.bold,blue.bold" \
-  "cd ritelkit-site && pnpm dev --port 4322" \
+  "cd ritelkit-site && PORT=4322 pnpm dev" \
   "cd ritelkit-app && npx portless --name ritelkit pnpm dev"
