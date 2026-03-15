@@ -21,11 +21,13 @@ if [ ! -d "node_modules" ] || [ ! -d "ritelkit-site/node_modules" ]; then
 fi
 
 # Jalankan dengan concurrently + portless
-# Dashboard: http://ritelkit.localhost:1355
-# App:       http://app.localhost:1355 (Wildcard: http://*.app.localhost:1355)
+# Dashboard/Landing: http://ritelkit.localhost:1355
+# Operation App:     http://app.ritelkit.localhost:1355
+# Multi-tenant App:   http://[tenant].app.ritelkit.localhost:1355
+
 npx concurrently \
   --prefix "[{name}]" \
-  --names "Dashboard,App" \
+  --names "Site,App" \
   --prefix-colors "green.bold,blue.bold" \
   "cd ritelkit-site && npx portless --name ritelkit pnpm dev" \
-  "cd ritelkit-app && npx portless --name app pnpm dev"
+  "cd ritelkit-app && npx portless --name app.ritelkit pnpm dev"
