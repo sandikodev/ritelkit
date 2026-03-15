@@ -28,15 +28,13 @@ trap cleanup SIGINT
 
 # 1. Menjalankan RitelKit Central (Dashboard) pada Port 4322
 echo -e "${GREEN}📡 Menjalankan RitelKit Central di port 4322...${NC}"
-cd ritelkit && pnpm dev --port 4322 > ../dashboard.log 2>&1 &
+(cd ritelkit && pnpm dev --port 4322 > ../dashboard.log 2>&1) &
 DASHBOARD_PID=$!
-cd ..
 
 # 2. Menjalankan RitelKit App (Tenant) pada Port 4321
 echo -e "${GREEN}📱 Menjalankan RitelKit App di port 4321...${NC}"
-cd ritelkit-app && pnpm dev --port 4321 > ../app.log 2>&1 &
+(cd ritelkit-app && pnpm dev --port 4321 > ../app.log 2>&1) &
 APP_PID=$!
-cd ..
 
 echo -e "${BLUE}---------------------------------------------------${NC}"
 echo -e "✅ Server berhasil dijalankan!"
